@@ -164,6 +164,17 @@ class ReduceMotionContracts(unittest.TestCase):
         self.assertIn('Appearance.animationsEnabled', symbol)
         self.assertRegex(symbol, r'Behavior\s+on\s+fill\s*\{[^}]*expressiveDefaultEffects')
 
+    def test_notification_reply_state_is_declared(self):
+        service = (SHELL_ROOT / 'app' / 'services' / 'NotificationService.qml').read_text(encoding='utf-8')
+        self.assertIn('property bool replyOpen', service)
+
+    def test_popup_entrance_follows_service_not_window_visibility(self):
+        host = (SHELL_ROOT / 'modules' / 'notifications' / 'NotificationPopupHost.qml').read_text(encoding='utf-8')
+        match = re.search(r'property\s+real\s+revealProgress\s*:\s*(.+)', host)
+        self.assertIsNotNone(match)
+        self.assertNotIn('popupWindow.visible', match.group(1))
+        self.assertIn('popupList.length > 0', match.group(1))
+
     def test_workspace_size_and_color_share_tokens(self):
         text = (SHELL_ROOT / 'modules' / 'bar' / 'workspaces' / 'Workspaces.qml').read_text(encoding='utf-8')
         self.assertIn('Appearance.animation.elementMoveFast.duration', text)

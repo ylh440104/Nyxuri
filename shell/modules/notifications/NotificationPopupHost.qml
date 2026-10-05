@@ -87,7 +87,7 @@ Scope {
                     border.width: 1
                     border.color: Appearance.colors.colLayer0Border
                     clip: true
-                    property real revealProgress: popupWindow.visible ? 1 : 0
+                    property real revealProgress: NotificationService.popupList.length > 0 && !NotificationService.popupInhibited ? 1 : 0
                     opacity: cardBackground.revealProgress
                     transform: Translate {
                         x: Appearance.animationsEnabled ? (1 - cardBackground.revealProgress) * 24 : 0

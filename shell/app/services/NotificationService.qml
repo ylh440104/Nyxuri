@@ -51,6 +51,7 @@ Singleton {
         property string image: ""
         property bool isTransient: false
         property bool popup: false
+        property bool replyOpen: false
         property double popupExpiresAt: 0
         property double popupStartedAt: 0
         property double receivedAt: Date.now()

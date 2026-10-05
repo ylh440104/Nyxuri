@@ -567,9 +567,6 @@ Singleton {
             }
         }
         property color m3tertiaryFixedDim: "#c3c3eb"
-    }
-
-    colors: QtObject {
         Behavior on m3tertiaryFixedDim {
             ColorAnimation {
                 enabled: Appearance.colorTransitionEnabled
@@ -578,6 +575,9 @@ Singleton {
                 easing.bezierCurve: Animations.curves.standard
             }
         }
+    }
+
+    colors: QtObject {
         property color colSubtext: root.ensureContrast(root.m3colors.m3outline, root.m3colors.m3background, root.highContrast ? 7 : 3.5)
 
         property color colLayer0Base: root.mix(root.m3colors.m3background, root.m3colors.m3primary, 0.99)

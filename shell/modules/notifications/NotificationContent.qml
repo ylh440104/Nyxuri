@@ -35,6 +35,9 @@ Item {
                 if (delegateRoot.modelData)
                     delegateRoot.modelData.replyOpen = delegateRoot.replying;
             }
+            onModelDataChanged: {
+                delegateRoot.replying = delegateRoot.modelData ? delegateRoot.modelData.replyOpen === true : false;
+            }
             property real expiryProgress: 0
 
             function sanitizedBody() {
